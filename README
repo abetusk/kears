@@ -1,0 +1,105 @@
+Must have m4 installed, must have avr-as, avr-ld, avr-objcopy and avrdude.
+ATTiny13 programed with ladyada's USBTinyISP (http://www.ladyada.net/make/usbtinyisp/)
+
+To compile kears.c:
+
+fionna@Ooo:~$ make
+
+To program:
+
+fionna@Ooo:~$ ./program_avr.sh kears.hex
+
+
+
+
+To compile kears.asm:
+
+./cmp.sh kears.asm
+
+
+To program:
+
+./program_avr.sh kears.ihex
+
+
+kears.asm should be functioning now, though I still need to play around
+with the differen PWM lengths for each state.  I would also like
+to play around with adding more states (the "distracted" states)
+so that's to be added.
+
+
+The 'cmp.sh' script is doing the following:
+m4 demo.S > demo.asm
+avr-as -mmcu=attiny13 -o demo.o demo.asm
+avr-ld -o demo.elf demo.o
+avr-objcopy --output-target=ihex demo.elf demo.ihex
+avrdude -c usbtiny -p t13 -U flash:w:demo.ihex
+
+
+
+NOTES:
+
+assumes attiny13 set to internal osciallator at 9.6 MHz
+
+fuse high bits (e.g. fuseh.hex):
+:01000000FF00
+:00000001FF
+
+fuse low bits (e.g. fusel.hex):
+:010000007A85
+:00000001FF
+
+to program fuses:
+sudo avrdude -c usbtiny -p t13 -U lfuse:w:0x7a:m
+sudo avrdude -c usbtiny -p t13 -U hfuse:w:0xff:m
+I think...
+
+
+a note on timing:
+we're assuming the attiny13 has been set to an internal
+oscialltor of 9.6 MHz
+we've set up the timer0 overflow to increment once per
+clock cycle, which means it should overflow once 
+every 256 instructions.
+so, 9,600,000 instructions / second
+256 instructions / fire
+-> 37,500 timer0 fires / second
+
+dammit, can never remember:
+Mega  10^6
+milli 10^{-3}
+micro 10^{-6}
+
+the hxt900 (http://www.servodatabase.com/servo/hextronik/hxt900),
+or compatible, servo wants a 450-2450 \mu s (microsecond) 
+pulse width with a 20 ms (millisecond) pulse cycle
+
+so, if we wanted to set up a counter in the timer0 overflow
+to be on for x microseconds and cycle every y milliseconds
+
+x 10^{-6} = ( X fires ) / ( 37,500 fires / second )
+-> X = x * 37,500 / 10^6
+-> Y = y * 37,500 / 10^3
+
+for y = 20 milliseconds   -> Y     = 750      fires
+for x = 450 microseconds  -> X_min = 16.875   fires
+for x = 2450 microseconds -> X_max = 91.875   fires
+
+and of course we have 8bit registers, so if we wanted
+to count to 750, we need two registers with the
+high bits being 2 and the low bits being 238
+( ( 2*2^8 + 238 ) = 750 ).
+This is where the values for HPW and LPW come from.
+LLEFTC through RRIGHTC simarly come from choosing
+values in the range of X_min and X_max.
+
+I've chosen about DEBOUNCEH and DEBOUNCEL to be 
+1/10th of a second (100 ms, what we generally 
+believe to be 'instantaneous' as humans)
+(14*256 + 166) = 3750 fires -> 1/10 second
+
+I've chosen the button timer (how long you need
+to press the button before it changes state)
+to be .35 of a second.  I might want to decrease
+this time a bit because it's noticeably slow.
+
