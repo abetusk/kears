@@ -40,26 +40,6 @@
 .equ RIGHTC, 70
 .equ RRIGHTC, 90
 
-;.equ LLEFTC, 17
-;.equ LEFTC, 25
-;.equ MIDC, 55
-;.equ RIGHTC, 92
-;.equ RRIGHTC, 100
-
-;; last good:
-;.equ LLEFTC, 25
-;.equ LEFTC, 30
-;.equ MIDC, 55
-;.equ RIGHTC, 86
-;.equ RRIGHTC, 92
-
-;.equ LLEFTC, 20
-;.equ LEFTC, 35
-;.equ MIDC, 55
-;.equ RIGHTC, 80
-;.equ RRIGHTC, 95
-
-
 .equ BUTTON_START, 0
 .equ BUTTON_PRESS1, 1
 .equ BUTTON_HOLD1, 2
@@ -86,7 +66,6 @@
 .equ EAR_STATE_DISTRACTED2, 5
 .equ EAR_STATE_DISTRACTED3, 6
 
-;;; DUMMY VALUES, NEED TO FIGURE SOMETHING OUT FOR THIS
-.equ AUX_COUNTER_H, 50
+.equ AUX_COUNTER_H, 25
 .equ AUX_COUNTER_L, 255
 

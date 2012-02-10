@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 chip="attiny13"
 
 s=$1

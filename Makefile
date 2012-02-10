@@ -1,6 +1,7 @@
 # WinAVR Sample makefile written by Eric B. Weddington, Jörg Wunsch, et al.
 # Modified (bringing often-changed options to the top) by Elliot Williams
 
+
 # make all = Make software and program
 # make clean = Clean out built project files.
 # make coff = Convert ELF to AVR COFF (for use with AVR Studio 3.x or VMLAB).

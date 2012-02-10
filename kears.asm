@@ -19,7 +19,6 @@
 ; avrdude -c usbtiny -p t13 -U flash:w:demo.ihex
 ;
 
-
 .include "kears_equ.S"
 
 define(brz, breq)
@@ -554,5 +553,4 @@ button_state_end:
 end:
 ;rjmp main_bridge
   rjmp  main_while
-
 

@@ -6,25 +6,6 @@
 #define HPW 2
 #define LPW 238
 
-/*
-//#define LEFTC 17
-#define LLEFTC 17
-#define LEFTC 25
-#define MIDC 55
-#define RIGHTC 92
-#define RRIGHTC 100
-*/
-
-/*
-//#define LEFTC 17
-#define LLEFTC 25
-#define LEFTC 30
-#define MIDC 55
-#define RIGHTC 86
-#define RRIGHTC 92
-*/
-
-//#define LEFTC 17
 #define LLEFTC 20
 #define LEFTC 35
 #define MIDC 55
@@ -37,7 +18,6 @@
 #define POS_L_LEFT 4
 #define POS_R_RIGHT 5
 
-//#define BUTTON_START 1
 #define BUTTON_PRESS1 2
 #define BUTTON_HOLD1 3
 #define BUTTON_RELEASE1 4
