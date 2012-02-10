@@ -22,6 +22,9 @@ To program:
 ./program_avr.sh kears.ihex
 
 
+
+If you have any comments or questions, send email to 'abetusk' at 'gmail' dot 'com'.
+
 kears.asm should be functioning now, though I still need to play around
 with the differen PWM lengths for each state.  I would also like
 to play around with adding more states (the "distracted" states)
