@@ -19,6 +19,7 @@
 ; avrdude -c usbtiny -p t13 -U flash:w:demo.ihex
 ;
 
+
 .include "kears_equ.S"
 
 
@@ -274,18 +275,23 @@ main:
 
   ;;;;;;;;;;;;;;;;
   ;;;;;; init
+
+  ; PB0-PB3 set as output, rest as input
   ldi   r17, 0x0f
   out   DDRB, r17
 
+  ; no prescaling
   in    r17, TCCR0B
   andi  r17, 0xf8
   ori   r17, 1
   out   TCCR0B, r17
 
+  ; enable timer interrupte
   in    r17, TIMSK0
   ori   r17, 2
   out   TIMSK0, r17
 
+  ; initialize global variables
   eor   r8, r8
 
   eor   r20, r20
@@ -553,4 +559,5 @@ button_state_end:
 end:
 ;rjmp main_bridge
   rjmp  main_while
+
 
