@@ -100,7 +100,17 @@ this time a bit because it's noticeably slow.
 
 NOTE (2):
 
-The current working source is the 'kears.asm'.  I originally programmed this in C but ran into size constraints with the ATtiny13 and had to switch over to assembly.  I have provided a previous version of the source, 'kears.c', in case anyone wants to play around with it or look at it.  The 'kears.c' should compile and work fine, just like the 'kears.asm', version, but without the extra 'wink' function (i.e. only two preset motions, the 'surprised' and 'sad/angry' motions are available).
+The current working source is the 'kears.asm'.  
+I originally programmed this in C but ran into 
+size constraints with the ATtiny13 and had to 
+switch over to assembly.  I have provided a 
+previous version of the source, 'kears.c', in 
+case anyone wants to play around with it or 
+look at it.  The 'kears.c' should compile and 
+work fine, just like the 'kears.asm', version, 
+but without the extra 'wink' function (i.e. 
+only two preset motions, the 'surprised' and 
+'sad/angry' motions are available).
 
 To compile kears.c:
 
