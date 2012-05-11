@@ -1,16 +1,6 @@
 Must have m4 installed, must have avr-as, avr-ld, avr-objcopy and avrdude.
 ATTiny13 programed with ladyada's USBTinyISP (http://www.ladyada.net/make/usbtinyisp/)
 
-To compile kears.c:
-
-fionna@Ooo:~$ make
-
-To program:
-
-fionna@Ooo:~$ ./program_avr.sh kears.hex
-
-
-
 
 To compile kears.asm:
 
@@ -27,7 +17,7 @@ To program:
 If you have any comments or questions, send email to 'abetusk' at 'gmail' dot 'com'.
 
 kears.asm should be functioning now, though I still need to play around
-with the differen PWM lengths for each state.  I would also like
+with the different PWM lengths for each state.  I would also like
 to play around with adding more states (the "distracted" states)
 so that's to be added.
 
@@ -43,7 +33,7 @@ avrdude -c usbtiny -p t13 -U flash:w:demo.ihex
 
 NOTES:
 
-assumes attiny13 set to internal osciallator at 9.6 MHz
+assumes attiny13 set to internal oscillator at 9.6 MHz
 
 fuse high bits (e.g. fuseh.hex):
 :01000000FF00
@@ -61,7 +51,7 @@ I think...
 
 a note on timing:
 we're assuming the attiny13 has been set to an internal
-oscialltor of 9.6 MHz
+oscillator of 9.6 MHz
 we've set up the timer0 overflow to increment once per
 clock cycle, which means it should overflow once 
 every 256 instructions.
@@ -106,4 +96,20 @@ I've chosen the button timer (how long you need
 to press the button before it changes state)
 to be .35 of a second.  I might want to decrease
 this time a bit because it's noticeably slow.
+
+
+NOTE (2):
+
+The current working source is the 'kears.asm'.  I originally programmed this in C but ran into size constraints with the ATtiny13 and had to switch over to assembly.  I have provided a previous version of the source, 'kears.c', in case anyone wants to play around with it or look at it.  The 'kears.c' should compile and work fine, just like the 'kears.asm', version, but without the extra 'wink' function (i.e. only two preset motions, the 'surprised' and 'sad/angry' motions are available).
+
+To compile kears.c:
+
+fionna@Ooo:~$ ./cmp.sh
+
+To program:
+
+fionna@Ooo:~$ ./program_avr.sh kears.hex
+
+
+
 
